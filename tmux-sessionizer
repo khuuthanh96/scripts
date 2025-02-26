@@ -1,0 +1,22 @@
+#!/bin/sh
+
+sessions=$(find ~ ~/personal ~/work -maxdepth 1 -mindepth 1 -type d)
+session=$(echo "$HOME\n$sessions" | sort -r | fzf --border --height=60% --margin=0,15% --header='Switch tmux workspace')
+session_name=$(basename "$session" | tr . _)
+
+if [ -z "$session" ]; then
+  exit 0
+fi
+
+# Check for exact session name match
+existing_session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | grep "^${session_name}$")
+
+if [ -z "$existing_session" ]; then
+  tmux new-session -s "$session_name" -c "$session" -d
+fi
+
+if tmux info >/dev/null 2>&1; then
+  tmux switch-client -t "=$session_name"
+else
+  tmux attach-session -t "=$session_name"
+fi
