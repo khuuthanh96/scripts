@@ -1,7 +1,7 @@
 #!/bin/sh
 
-sessions=$(find ~ ~/personal ~/work -maxdepth 1 -mindepth 1 -type d)
-session=$(echo "$HOME\n$sessions" | sort -r | fzf --border --height=60% --margin=0,15% --header='Switch tmux workspace')
+sessions=$(find ~ ~/projects -maxdepth 1 -mindepth 1 -type d)
+session=$(echo -e "$HOME\n$sessions" | sort -r | fzf --border --height=60% --margin=0,15% --header='Switch tmux workspace')
 session_name=$(basename "$session" | tr . _)
 
 if [ -z "$session" ]; then
