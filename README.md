@@ -1,4 +1,11 @@
-# Make script accesible globally
+# Prepare script
+
+### Make script executable
+```
+sudo chmod +x <path>/tmux-sessionizer.sh
+```
+
+### Make script accesible globally
 ```
 sudo ln -s <path>/tmux-sessionizer.sh /usr/local/bin/tmux-sessionizer
 ```
