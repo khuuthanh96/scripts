@@ -10,3 +10,6 @@ sudo ln -s <path>/tmux-sessionizer.sh /usr/local/bin/tmux-sessionizer
 
 ## Bash
 `bind -x '"\C-f":"tmux-sessionizer"'`
+
+## Zsh
+`bindkey -s ^f "tmux-sessionizer\n"`
